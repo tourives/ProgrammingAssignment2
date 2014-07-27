@@ -1,0 +1,99 @@
+
+R version 3.0.3 (2014-03-06) -- "Warm Puppy"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.63 (6660) x86_64-apple-darwin10.8.0]
+
+[History restored from /Users/tourives/.Rapp.history]
+
+> ## This funtion creates a Matrix
+> makeCacheMatrix <- function(x = matrix()) {
++      minv <- NULL
++ ## set the matrix value     
++      set <- function(y) {
++          x <<- y
++          minv <<- NULL
++      }
++ ## get the matrix value      
++      get <- function() x
++ ## set the value of inverse of the matrix     
++      setinverse <- function(inverse) minv <<- inverse
++ ## get the value of inverse of the matrix
++      getinverse <- function() minv
++      list(set = set, 
++      	  get = get,
++           setinverse=setinverse,
++           getinverse=getinverse)
++ }
+> 
+> ## This function returns the inverse of the matrix created by makeCacheMatrix.
+> cacheSolve <- function(x, ...) {
++ ## Check if the inverse is solved aleready	
++ ## if YES, just return the inverse, 
++ ## otherwise, the function must solve it.
++     minv <- x$getinverse()
++     if(!is.null(minv)) {
++         message("getting cached data.")
++         return(minv)
++ 	}
++ 	else{
++     		data <- x$get()
++     		minv <- solve(data)
++    		 x$setinverse(minv)
++    		minv		
++     }
++ }
+> 
+> x = rbind(c(1, -1/4), c(-1/4, 1))
+> m = makeCacheMatrix(x)
+> m$get()
+      [,1]  [,2]
+[1,]  1.00 -0.25
+[2,] -0.25  1.00
+> cacehSolve(m)
+Error: could not find function "cacehSolve"
+> cacheColve(m)
+Error: could not find function "cacheColve"
+> cacheSolve(m)
+          [,1]      [,2]
+[1,] 1.0666667 0.2666667
+[2,] 0.2666667 1.0666667
+> x = rbind(c(1, -1/4), c(-1/2, 2)
++ m = makeCacheMatrix(x)
+Error: unexpected symbol in:
+"x = rbind(c(1, -1/4), c(-1/2, 2)
+m"
+> x = rbind(c(1, -1/4), c(-1/2, 2)
++  m = makeCacheMatrix(x)
+Error: unexpected symbol in:
+"x = rbind(c(1, -1/4), c(-1/2, 2)
+ m"
+> x = rbind(c(1, -1/4), c(-1/2, 2)
++ 
++ )
+> m = makeCacheMatrix(x)
+> cacheSolve(m)
+          [,1]      [,2]
+[1,] 1.0666667 0.1333333
+[2,] 0.2666667 0.5333333
+2014-07-27 16:14:11.740 R[29778:707] *** RController: caught ObjC exception while processing system events. Update to the latest GUI version and consider reporting this properly (see FAQ) if it persists and is not known. 
+*** reason: parentForItemsInColumn: is not supported for browsers with matrix delegates.
+*** name: NSInternalInconsistencyException, info: (null)
+*** Version: R 3.0.3 () R.app R 3.0.3 GUI 1.63 Snow Leopard build(null)
+Consider saving your work soon in case this develops into a problem.
+> 

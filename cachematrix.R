@@ -25,7 +25,6 @@ cacheSolve <- function(x, ...) {
 ## otherwise, the function must solve it.
     minv <- x$getinverse()
     if(!is.null(minv)) {
-        message("getting cached data.")
         return(minv)
 	}
 	else{
