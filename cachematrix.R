@@ -20,7 +20,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## This function returns the inverse of the matrix created by makeCacheMatrix.
 cacheSolve <- function(x, ...) {
-## Check if the inverse is solved aleready	
+## Check if the inverse is solved already	
 ## if YES, just return the inverse, 
 ## otherwise, the function must solve it.
     minv <- x$getinverse()
@@ -28,9 +28,9 @@ cacheSolve <- function(x, ...) {
         return(minv)
 	}
 	else{
-    		data <- x$get()
-    		minv <- solve(data)
-   		 x$setinverse(minv)
+    	data <- x$get()
+    	minv <- solve(data)
+   		x$setinverse(minv)
    		minv		
     }
 }
