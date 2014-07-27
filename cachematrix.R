@@ -30,7 +30,6 @@ cacheSolve <- function(x, ...) {
 	else{
     	data <- x$get()
     	minv <- solve(data)
-   		x$setinverse(minv)
    		minv		
     }
 }
