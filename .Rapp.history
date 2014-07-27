@@ -1,0 +1,51 @@
+## This funtion creates a Matrix#
+makeCacheMatrix <- function(x = matrix()) {#
+     minv <- NULL#
+## set the matrix value     #
+     set <- function(y) {#
+         x <<- y#
+         minv <<- NULL#
+     }#
+## get the matrix value      #
+     get <- function() x#
+## set the value of inverse of the matrix     #
+     setinverse <- function(inverse) minv <<- inverse#
+## get the value of inverse of the matrix#
+     getinverse <- function() minv#
+     list(set = set, #
+     	  get = get,#
+          setinverse=setinverse,#
+          getinverse=getinverse)#
+}#
+#
+## This function returns the inverse of the matrix created by makeCacheMatrix.#
+cacheSolve <- function(x, ...) {#
+## Check if the inverse is solved aleready	#
+## if YES, just return the inverse, #
+## otherwise, the function must solve it.#
+    minv <- x$getinverse()#
+    if(!is.null(minv)) {#
+        message("getting cached data.")#
+        return(minv)#
+	}#
+	else{#
+    		data <- x$get()#
+    		minv <- solve(data)#
+   		 x$setinverse(minv)#
+   		minv		#
+    }#
+}
+x = rbind(c(1, -1/4), c(-1/4, 1))#
+m = makeCacheMatrix(x)
+m$get()
+cacehSolve(m)
+cacheColve(m)
+cacheSolve(m)
+x = rbind(c(1, -1/4), c(-1/2, 2)
+m = makeCacheMatrix(x)
+x = rbind(c(1, -1/4), c(-1/2, 2)#
+ m = makeCacheMatrix(x)
+x = rbind(c(1, -1/4), c(-1/2, 2)
+)
+m = makeCacheMatrix(x)
+cacheSolve(m)
