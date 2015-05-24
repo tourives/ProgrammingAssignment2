@@ -22,11 +22,11 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
 ## Check if the inverse is solved already	
 ## if YES, just return the inverse, 
-## otherwise, the function must solve it.
     minv <- x$getinverse()
     if(!is.null(minv)) {
         return(minv)
 	}
+## otherwise, the function must solve it.
 	else{
     	data <- x$get()
     	minv <- solve(data)
